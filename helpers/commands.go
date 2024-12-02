@@ -31,6 +31,10 @@ func (years Puzzles) SolvePuzzle(year, day, puzzle string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	i--
+	if i < 0 || i > 1 {
+		return "", fmt.Errorf("invalid puzzle: %s", puzzle)
+	}
 
 	var solvers []func() string
 	solvers, ok = puzzleMap[day]
@@ -38,7 +42,7 @@ func (years Puzzles) SolvePuzzle(year, day, puzzle string) (string, error) {
 		return "", fmt.Errorf("invalid day: %s", day)
 	}
 
-	solver := solvers[i-1]
+	solver := solvers[i]
 	answer := solver()
 	return answer, nil
 }
