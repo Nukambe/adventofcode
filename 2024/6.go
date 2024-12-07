@@ -43,7 +43,6 @@ func (g *guard) patrol(grid []string, extra vector) bool {
 	g.path[g.location]++ // save location
 	if g.path[g.location] > 3 {
 		g.loop[g.location] = struct{}{}
-		fmt.Println("loop:", g.loop)
 	}
 	return true
 }
@@ -124,7 +123,6 @@ func SolveDay6Puzzle2() string {
 			for gallivant.patrol(grid, vector{x, y}) {
 				if len(gallivant.loop) > 1 {
 					total++
-					fmt.Println("total:", total)
 					break
 				}
 			}

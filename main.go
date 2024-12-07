@@ -27,6 +27,8 @@ func main() {
 	puzzles.RegisterPuzzle("2024", "5", 1, _024.SolveDay5Puzzle2)
 	puzzles.RegisterPuzzle("2024", "6", 0, _024.SolveDay6Puzzle1)
 	puzzles.RegisterPuzzle("2024", "6", 1, _024.SolveDay6Puzzle2)
+	puzzles.RegisterPuzzle("2024", "7", 0, _024.SolveDay7Puzzle1)
+	puzzles.RegisterPuzzle("2024", "7", 1, _024.SolveDay7Puzzle2)
 
 	answer, err := puzzles.SolvePuzzle(args[1], args[2], args[3])
 	if err != nil {
