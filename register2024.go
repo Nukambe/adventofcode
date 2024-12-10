@@ -22,4 +22,6 @@ func register2024(puzzles helpers.Puzzles) {
 	puzzles.RegisterPuzzle("2024", "7", 1, _024.SolveDay7Puzzle2)
 	puzzles.RegisterPuzzle("2024", "8", 0, _024.SolveDay8Puzzle1)
 	puzzles.RegisterPuzzle("2024", "8", 1, _024.SolveDay8Puzzle2)
+	puzzles.RegisterPuzzle("2024", "9", 0, _024.SolveDay9Puzzle1)
+	puzzles.RegisterPuzzle("2024", "9", 1, _024.SolveDay9Puzzle2)
 }
