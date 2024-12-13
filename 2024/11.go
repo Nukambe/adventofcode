@@ -36,7 +36,7 @@ func blink(stones []int) []int {
 }
 
 func SolveDay11Puzzle1() string {
-	puzzlePath := path.Join("2024", "puzzle-inputs", "11.txt")
+	puzzlePath := path.Join("2024", "puzzle-inputs", "test.txt")
 	lines, _ := helpers.ReadPuzzleInput(puzzlePath)
 	engravings := strings.Split(lines[0], " ")
 
@@ -50,7 +50,7 @@ func SolveDay11Puzzle1() string {
 		stones = blink(stones)
 	}
 
-	return fmt.Sprintf("%d", len(stones))
+	return fmt.Sprintf("%v", stones)
 }
 
 func SolveDay11Puzzle2() string {
@@ -64,14 +64,36 @@ func SolveDay11Puzzle2() string {
 		stones[i] = n
 	}
 
+	fmt.Println("working to 40...")
+	for range 40 {
+		stones = blink(stones)
+	}
+
 	var stns []int
-	for i, stone := range stones {
-		stn := []int{stone}
-		for j := range 75 {
-			fmt.Println(i, j)
-			stn = blink(stn)
+	stoneCh := make(chan []int)
+	for _, stone := range stones {
+		go func() {
+			stn := []int{stone}
+			for range 35 {
+				stn = blink(stn)
+			}
+			stoneCh <- stn
+		}()
+	}
+
+	i := 0
+	go func() {
+		for addStones := range stoneCh {
+			stns = append(stns, addStones...)
+			i++
+			fmt.Println(i)
 		}
-		stns = append(stns, stn...)
+	}()
+
+	for {
+		if i == len(stones) {
+			break
+		}
 	}
 
 	return fmt.Sprintf("%d", len(stns))
